@@ -1,9 +1,65 @@
+import {
+  FETCH_SMURF_DATA_FAILURE,
+  FETCH_SMURF_DATA_START,
+  FETCH_SMURF_DATA_SUCCESS,
+  ADD_SMURF_DATA_FAILURE,
+  ADD_SMURF_DATA_START,
+  ADD_SMURF_DATA_SUCCESS,
+  SUBMIT_ERROR,
+} from "../actions/index";
 
 export const initialState = {
-}
+  smurfs: [],
+  isLoading: false,
+  error: "",
+};
 
-const reducer = ()=>{
-}
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_SMURF_DATA_START:
+      return {
+        ...state,
+        isloading: true,
+      };
+    case FETCH_SMURF_DATA_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        smurfs: action.payload,
+      };
+    case FETCH_SMURF_DATA_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    case ADD_SMURF_DATA_START:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case ADD_SMURF_DATA_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        smurfs: action.payload,
+      };
+    case ADD_SMURF_DATA_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    case SUBMIT_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+      };
+    default:
+      return state;
+  }
+};
 
 export default reducer;
 
